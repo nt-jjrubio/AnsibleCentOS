@@ -1,0 +1,63 @@
+---
+- hosts: MagnaVB
+  
+  vars_prompt: 
+    - name: "gituser" 
+      prompt: "Enter your git username" 
+      private: no 
+    - name: "gitpassword" 
+      prompt: "Enter your git password" 
+      private: yes 
+
+
+  tasks:
+  - name: Install git
+    yum:
+      name: git
+      state: latest
+
+  - name: Install apache
+    yum:
+      name: httpd
+      state: latest
+
+  - name: Add nodejs repo 6x
+    shell: curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
+
+  - name: Install nodejs
+    yum:
+      name: nodejs
+      state: latest
+
+  - name: Install vim
+    yum:
+      name: vim
+      state: latest
+
+  - name: Add mongo repo
+    yum_repository:
+      name: MongoDBRepository
+      description: MongoDB YUM repo
+      baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.4/x86_64/
+      gpgcheck: 1
+      gpgkey: https://www.mongodb.org/static/pgp/server-3.4.asc
+      enabled: yes
+
+      
+  - name: Install Mongo
+    yum: 
+      name: mongodb-org
+      state: latest
+
+  - name: Enable and start httpd on systemctl 
+    systemd:
+      name: httpd
+      state: started
+      enabled: yes
+
+  - name: Enable and start mongod on systemctl 
+    systemd:
+      name: mongod
+      state: started
+      enabled: yes
+
