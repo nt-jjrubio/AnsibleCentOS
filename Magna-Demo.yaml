@@ -42,7 +42,6 @@
       gpgcheck: 1
       gpgkey: https://www.mongodb.org/static/pgp/server-3.4.asc
       enabled: yes
-
       
   - name: Install Mongo
     yum: 
@@ -61,3 +60,13 @@
       state: started
       enabled: yes
 
+  - name: Install ImageMagick
+    yum:
+      name: ImageMagick
+      state: latest
+  
+  - name: Install LibreOffice
+    yum:
+      name: libreoffice
+      state: latest
+    
