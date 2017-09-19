@@ -1,5 +1,5 @@
 ---
-- hosts: MagnaVB
+- hosts: MagnaAWS
   
 #  vars_prompt: 
 #    - name: "gituser" 
@@ -9,31 +9,35 @@
 #      prompt: "Enter your git password" 
 #      private: yes 
 
-
   tasks:
   - name: Install git
     yum:
       name: git
       state: latest
+    sudo: yes
 
   - name: Install apache
     yum:
       name: httpd
       state: latest
+    sudo: yes
 
   - name: Add nodejs repo 6x
     shell: curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
-
+    sudo: yes
+    
   - name: Install nodejs
     yum:
       name: nodejs
       state: latest
+    sudo: yes
 
   - name: Install vim
     yum:
       name: vim
       state: latest
-
+    sudo: yes
+  
   - name: Add mongo repo
     yum_repository:
       name: MongoDBRepository
@@ -42,35 +46,42 @@
       gpgcheck: 1
       gpgkey: https://www.mongodb.org/static/pgp/server-3.4.asc
       enabled: yes
+    sudo: yes
 
   - name: Install Mongo
     yum:
       name: mongodb-org
       state: latest
+    sudo: yes
 
   - name: Enable and start httpd on systemctl
     systemd:
       name: httpd
       state: started
       enabled: yes
+    sudo: yes
 
   - name: Enable and start mongod on systemctl
     systemd:
       name: mongod
       state: started
       enabled: yes
+    sudo: yes
 
   - name: Install ImageMagick
     yum:
       name: ImageMagick
       state: latest
+    sudo: yes
 
   - name: Install LibreOffice
     yum:
       name: libreoffice
       state: latest
+    sudo: yes
 
   - name: Install pm2
     npm:
       name: pm2
       global: yes
+    sudo: yes
