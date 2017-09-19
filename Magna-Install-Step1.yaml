@@ -1,13 +1,13 @@
 ---
 - hosts: MagnaVB
   
-  vars_prompt: 
-    - name: "gituser" 
-      prompt: "Enter your git username" 
-      private: no 
-    - name: "gitpassword" 
-      prompt: "Enter your git password" 
-      private: yes 
+#  vars_prompt: 
+#    - name: "gituser" 
+#      prompt: "Enter your git username" 
+#      private: no 
+#    - name: "gitpassword" 
+#      prompt: "Enter your git password" 
+#      private: yes 
 
 
   tasks:
@@ -42,19 +42,19 @@
       gpgcheck: 1
       gpgkey: https://www.mongodb.org/static/pgp/server-3.4.asc
       enabled: yes
-      
+
   - name: Install Mongo
-    yum: 
+    yum:
       name: mongodb-org
       state: latest
 
-  - name: Enable and start httpd on systemctl 
+  - name: Enable and start httpd on systemctl
     systemd:
       name: httpd
       state: started
       enabled: yes
 
-  - name: Enable and start mongod on systemctl 
+  - name: Enable and start mongod on systemctl
     systemd:
       name: mongod
       state: started
@@ -64,12 +64,12 @@
     yum:
       name: ImageMagick
       state: latest
-  
-  - name: Install LibreOffice
+
+   - name: Install LibreOffice
     yum:
       name: libreoffice
       state: latest
-    
+
   - name: Install pm2
     npm:
       name: pm2
