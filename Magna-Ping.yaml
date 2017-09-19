@@ -1,5 +1,5 @@
 ---
-- hosts: MagnaVB
+- hosts: MagnaAWS
  
   tasks:
   - name: Ping to check if server has alive

@@ -65,7 +65,7 @@
       name: ImageMagick
       state: latest
 
-   - name: Install LibreOffice
+  - name: Install LibreOffice
     yum:
       name: libreoffice
       state: latest
