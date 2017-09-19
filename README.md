@@ -3,6 +3,11 @@
 Latest ansible version
 
 ## Run
+With username and password
 ```
-ansible-playbook -u USUARIO --ask-pass Magna-Demo.yaml
+ansible-playbook -u USUARIO --ask-pass PLAYBOOK.yaml
+```
+With username and private key file
+```
+ ansible-playbook -u USUARIO --private-key RUTACLAVEPRIVADA PLAYBOOK.yaml   
 ```
