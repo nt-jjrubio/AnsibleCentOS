@@ -1,0 +1,6 @@
+---
+- hosts: MagnaVB
+ 
+  tasks:
+  - name: Ping to check if server has alive
+    ping:
