@@ -1,0 +1,21 @@
+# How to run this playbook: 
+#
+# Create host inventory and variables --> inventory.yaml <-- 
+#
+# - hosts:
+#     90.90.90.90
+#   vars: 
+#     hostname: url.example.com
+#
+# Need ansible latest version (Check how to install in your distro) http://docs.ansible.com/ansible/latest/intro_installation.html 
+# ansible-playbook -u USER --private-key PRIVATEKEYFILE Magna-Install-FrontEnd.yaml
+# 
+---
+- hosts: all
+
+  tasks:
+    - name: Ping to check if server has alive
+      ping:
+    
+    # Install packages (Apache, node, certboot)
+    - include: FrontEnd-playbooks/FrontEnd-tasks-Packages.yaml

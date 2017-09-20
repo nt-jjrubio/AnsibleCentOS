@@ -1,0 +1,48 @@
+- name: test variables
+  shell: touch {{ hostname }}
+
+- name: Install epel repository 
+  yum:
+    name: epel-release
+    state: latest
+  sudo: yes
+
+- name: Install apache 
+  yum:
+    name: httpd
+    state: latest
+  sudo: yes
+
+- name: Add nodejs repo 6x
+  shell: curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
+  sudo: yes
+  
+- name: Install nodejs
+  yum:
+    name: nodejs
+    state: latest
+  sudo: yes
+
+- name: Install vim
+  yum:
+    name: vim
+    state: latest
+  sudo: yes
+
+- name: Install Certbot (mod_ssl)
+  yum: 
+    name: mod_ssl
+    state: latest
+  sudo: yes
+
+- name: Install Certbot (python-certbot-apache)
+  yum:
+    name: python-certbot-apache
+    state: latest
+  sudo: yes
+
+
+ # Create Virtualhost 80
+ # Run certbot 
+ # Delete Virtualhost 80
+ # Create newn Virtualhost 80 redirect
