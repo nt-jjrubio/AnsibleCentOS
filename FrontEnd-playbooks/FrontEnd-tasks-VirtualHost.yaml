@@ -27,3 +27,10 @@
     state: restarted
     enabled: yes
   sudo: yes
+
+# TODO: Move certbot ssl file to sites-available and make link
+  
+# Create SSL Certbot
+- name: run certbot
+  shell: certbot --email devops@talentosoftware.com  --apache -n  -d {{ hostname }}  --agree-tos >> /home/centos/certbot_{{ hostname }}.log
+  sudo: yes

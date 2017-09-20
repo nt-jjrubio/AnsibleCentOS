@@ -24,9 +24,3 @@
     state: restarted
     enabled: yes
   sudo: yes
-
-# mkdir /etc/httpd/sites-available
-# mkdir /etc/httpd/sites-enabled
-# create file config /etc/httpd/conf/VirtualHost.conf
-#     IncludeOptional sites-enabled/*.conf
-# restart apache
