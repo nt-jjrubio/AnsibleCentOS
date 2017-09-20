@@ -1,6 +1,6 @@
 # How to run this playbook: 
 #
-# Create host inventory and variables --> inventory.yaml <-- 
+# Create host inventory and variables --> hosts.ini <-- 
 #
 # - hosts:
 #     90.90.90.90
@@ -19,3 +19,9 @@
     
     # Install packages (Apache, node, certboot)
     - include: FrontEnd-playbooks/FrontEnd-tasks-Packages.yaml
+
+    # Prepare CentOS Httpd to use Sites-Available <--> Sites-Enabled
+    - include: Utils-playbooks/CentOS-httpd-VirtualHost.yaml
+
+    # Create virtualhost
+    - include: FrontEnd-playbooks/FrontEnd-tasks-VirtualHost.yaml

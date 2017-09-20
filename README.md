@@ -1,6 +1,7 @@
 # Ansible playbook to install Magna for CentOS
 ## Requirements
 Latest ansible version http://docs.ansible.com/ansible/latest/intro_installation.html
+
 Create host inventory and variables --> hosts.ini <-- 
 ## Run
 With username and password
