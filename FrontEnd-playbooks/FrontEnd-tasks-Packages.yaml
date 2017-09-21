@@ -1,6 +1,3 @@
-- name: test variables
-  shell: touch {{ hostname }}
-
 - name: Install epel repository 
   yum:
     name: epel-release

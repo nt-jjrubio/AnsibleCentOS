@@ -32,5 +32,5 @@
   
 # Create SSL Certbot
 - name: run certbot
-  shell: certbot --email devops@talentosoftware.com  --apache -n  -d {{ hostname }}  --agree-tos >> /home/centos/certbot_{{ hostname }}.log
+  command: certbot --email devops@talentosoftware.com  --apache -n  -d {{ hostname }}  --agree-tos 
   sudo: yes

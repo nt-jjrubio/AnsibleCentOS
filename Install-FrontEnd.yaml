@@ -14,9 +14,20 @@
 - hosts: all
 
   tasks:
+    - debug: 
+       msg: "Run tasks on {{ hostname }}"
+      
+    - debug:
+        msg: "Swap memory --> {{ ansible_swaptotal_mb }} <--"
+
     - name: Ping to check if server has alive
       ping:
-    
+        
+
+    # Create swapfile
+    - include: Utils-playbooks/CentOS-swapfile.yaml
+      when: ansible_swaptotal_mb < 1
+
     # Install packages (Apache, node, certboot)
     - include: FrontEnd-playbooks/FrontEnd-tasks-Packages.yaml
 
