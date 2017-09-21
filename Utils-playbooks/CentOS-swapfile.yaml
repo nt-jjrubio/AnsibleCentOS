@@ -19,19 +19,3 @@
 - name: Add to fstab
   action: lineinfile dest=/etc/fstab regexp="swapfile" line="/swapfile none swap sw 0 0" state=present
   sudo: yes
-
-   # dd if=/dev/zero of=/swapfile bs=1M count=2048 
-   # chmod 600 /swapfile 
-   # mkswap /swapfile
-   # swapon /swapfile
-
-
-
-#- name: change swap file permissions
-#file: path=/mnt/4GB.swap owner=root group=root mode=0600
-
-#- name: add the file to the system as a swap file
-#command: swapon /mnt/4GB.swap
-
-#- name: write swap entry in fstab
-#mount: name=none src=/mnt/4GB.swap fstype=swap opts=sw passno=0 dump=0 state=present
