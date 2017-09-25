@@ -1,0 +1,19 @@
+# Create folder 
+- name: Create project temporal folder ~/front-{{ hostname }}
+  file:
+    path: /tmp/front-{{ hostname }}
+    state: directory
+
+- name: Copy project 
+  synchronize:
+    src: ./project/
+    dest: "/tmp/front-{{ hostname }}"
+    
+- name: npm install
+  npm: 
+    path: "/tmp/front-{{ hostname }}/"
+
+- name: Copy project to /var/www
+  command: cp -R /tmp/front-{{ hostname }}/dist/ /var/www/html/{{ hostname }}
+  sudo: yes
+

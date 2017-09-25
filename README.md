@@ -3,6 +3,10 @@
 Latest ansible version http://docs.ansible.com/ansible/latest/intro_installation.html
 
 Create host inventory and variables --> hosts.ini <-- 
+
+Create "project" folder and put frontend project (Without .git folder)
+### Before run this script edit project config files!
+
 ## Run
 With username and password
 ```

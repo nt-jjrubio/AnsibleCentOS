@@ -36,3 +36,7 @@
 
     # Create virtualhost
     - include: FrontEnd-playbooks/FrontEnd-tasks-VirtualHost.yaml
+
+    # Copy project
+    - include: FrontEnd-playbooks/FrontEnd-UploadProject.yaml
+
