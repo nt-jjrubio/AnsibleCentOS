@@ -15,5 +15,5 @@
 
 - name: Copy project to /var/www
   command: cp -R /tmp/front-{{ hostname }}/dist/ /var/www/html/{{ hostname }}
-  sudo: yes
+  become: yes
 

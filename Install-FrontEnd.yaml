@@ -1,33 +1,40 @@
-# How to run this playbook: 
+# How to run this playbook:
 #
-# Create host inventory and variables --> hosts.ini <-- 
+# Create host inventory and variables --> hosts.ini <--
 #
 # - hosts:
 #     90.90.90.90
-#   vars: 
+#   vars:
 #     hostname: url.example.com
 #
-# Need ansible latest version (Check how to install in your distro) http://docs.ansible.com/ansible/latest/intro_installation.html 
+# Need ansible latest version (Check how to install in your distro) http://docs.ansible.com/ansible/latest/intro_installation.html
 # ansible-playbook -u USER --private-key PRIVATEKEYFILE Magna-Install-FrontEnd.yaml
-# 
+#
 ---
 - hosts: all
 
   tasks:
-    - debug: 
+    - debug:
        msg: "Run tasks on {{ hostname }}"
-      
+
     - debug:
         msg: "Swap memory --> {{ ansible_swaptotal_mb }} <--"
 
     - name: Ping to check if server has alive
       ping:
-        
+
 
     # Create swapfile
     - include: Utils-playbooks/CentOS-swapfile.yaml
       when: ansible_swaptotal_mb < 1
 
+    # Upgrade packages
+    - name: yum upgrade all packages
+      yum:
+       name: '*'
+       state: latest
+      become: true
+      
     # Install packages (Apache, node, certboot)
     - include: FrontEnd-playbooks/FrontEnd-tasks-Packages.yaml
 
@@ -39,4 +46,3 @@
 
     # Copy project
     - include: FrontEnd-playbooks/FrontEnd-UploadProject.yaml
-
