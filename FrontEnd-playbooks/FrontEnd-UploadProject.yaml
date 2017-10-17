@@ -4,16 +4,22 @@
     path: /tmp/front-{{ hostname }}
     state: directory
 
-- name: Copy project 
+- name: Copy project local --> remote
   synchronize:
     src: ./project/
     dest: "/tmp/front-{{ hostname }}"
-    
-- name: npm install
+
+- name: Install git if not installed 
+  yum:
+    name: git
+    state: latest
+  become: true
+           
+- name: npm install (This process may take several minutes)
   npm: 
     path: "/tmp/front-{{ hostname }}/"
 
 - name: Copy project to /var/www
-  command: cp -R /tmp/front-{{ hostname }}/dist/ /var/www/html/{{ hostname }}
+  command: cp -R /tmp/front-{{ hostname }}/dist/. /var/www/html/{{ hostname }}
   become: yes
 
