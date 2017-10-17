@@ -1,3 +1,8 @@
+# Create SSL Certbot (Cerbot needs use 80 port to test domain)
+- name: run certbot
+  command: certbot certonly --email devops@talentosoftware.com  --apache -n  -d {{ hostname }}  --agree-tos 
+  become: yes
+
 # Create folder 
 - name: Create project folder /var/www/html/{{ hostname }}
   file:
@@ -26,11 +31,4 @@
     name: httpd
     state: restarted
     enabled: yes
-  become: yes
-
-# TODO: Move certbot ssl file to sites-available and make link
-  
-# Create SSL Certbot (Cerbot needs use 80 port to test domain)
-- name: run certbot
-  command: certbot certonly --email devops@talentosoftware.com  --apache -n  -d {{ hostname }}  --agree-tos 
   become: yes

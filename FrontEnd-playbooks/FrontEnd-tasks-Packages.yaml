@@ -37,9 +37,3 @@
     name: python-certbot-apache
     state: latest
   become: yes
-
-
- # Create Virtualhost 80
- # Run certbot 
- # Delete Virtualhost 80
- # Create newn Virtualhost 80 redirect
